@@ -1,10 +1,14 @@
 import { useEffect } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-import { auth, provider } from "../firebase";
 import { useHistory } from "react-router-dom";
-import { 
-  selectUserName, selectUserPhoto, setUserLoginDetails, setSignOutState } from "../features/user/userSlice";
+import { auth, provider } from "../firebase";
+import {
+  selectUserName,
+  selectUserPhoto,
+  setUserLoginDetails,
+  setSignOutState,
+} from "../features/user/userSlice";
 
 const Header = (props) => {
   const dispatch = useDispatch();
@@ -14,13 +18,12 @@ const Header = (props) => {
 
   useEffect(() => {
     auth.onAuthStateChanged(async (user) => {
-      if(user) {
+      if (user) {
         setUser(user);
-        history.push("./home");
+        history.push("/home");
       }
     });
   }, [userName]);
-
 
   const handleAuth = () => {
     if (!userName) {
@@ -42,7 +45,6 @@ const Header = (props) => {
         .catch((err) => alert(err.message));
     }
   };
-
 
   const setUser = (user) => {
     dispatch(
@@ -107,7 +109,6 @@ const Nav = styled.nav`
   top: 0;
   left: 0;
   right: 0;
-  left: 0;
   height: 70px;
   background-color: #090b13;
   display: flex;
@@ -125,7 +126,6 @@ const Logo = styled.a`
   max-height: 70px;
   font-size: 0;
   display: inline-block;
-
   img {
     display: block;
     width: 100%;
@@ -143,19 +143,16 @@ const NavMenu = styled.div`
   position: relative;
   margin-right: auto;
   margin-left: 25px;
-
   a {
     display: flex;
     align-items: center;
     padding: 0 12px;
-
     img {
       height: 20px;
       min-width: 20px;
       width: 20px;
       z-index: auto;
     }
-
     span {
       color: rgb(249, 249, 249);
       font-size: 13px;
@@ -164,7 +161,6 @@ const NavMenu = styled.div`
       padding: 2px 0px;
       white-space: nowrap;
       position: relative;
-
       &:before {
         background-color: rgb(249, 249, 249);
         border-radius: 0px 0px 4px 4px;
@@ -182,7 +178,6 @@ const NavMenu = styled.div`
         width: auto;
       }
     }
-
     &:hover {
       span:before {
         transform: scaleX(1);
@@ -201,12 +196,11 @@ const Login = styled.a`
   padding: 8px 16px;
   text-transform: uppercase;
   letter-spacing: 1.5px;
-  border: 1px solid #fff;
+  border: 1px solid #f9f9f9;
   border-radius: 4px;
   transition: all 0.2s ease 0s;
-
   &:hover {
-    background-color: #fff;
+    background-color: #f9f9f9;
     color: #000;
     border-color: transparent;
   }
